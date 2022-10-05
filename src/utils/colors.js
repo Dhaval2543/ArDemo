@@ -4,4 +4,5 @@ export const colors = {
   blackOp5: 'rgba(0,0,0,0.50)',
   red: '#EB1D36',
   yellow: '#FB9E13',
+  white: '#fff',
 };

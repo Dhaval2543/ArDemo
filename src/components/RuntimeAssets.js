@@ -4,6 +4,7 @@ import React from 'react';
 import {
   ActivityIndicator,
   Animated,
+  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -153,7 +154,7 @@ class RuntimeAssets extends React.Component {
         onResponderMove={this.onMove}
         animate={!!fromXY}
         tint={{r: 1.0, g: 1.0, b: 1.0, a: 1.0}}
-        scale={0.015}
+        scale={Platform.OS === 'android' ? 0.01 : 0.015}
         rotateX={rotateX}
         rotateZ={rotateZ}
         translateZ={-4}
