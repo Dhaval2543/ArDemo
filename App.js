@@ -18,10 +18,11 @@ export default function App() {
     const modelSrc =
       Platform.OS === 'android'
         ? 'https://modelviewer.dev/shared-assets/models/Astronaut.glb?raw=true'
-        : 'https://skfb.ly/owMGv?raw=true';
+        : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/Astronaut.usdz?raw=true';
     const modelPath = `${RNFS.DocumentDirectoryPath}/model.${
       Platform.OS === 'android' ? 'glb' : 'usdz'
     }`;
+    console.log(Platform.OS === 'android' ? `file://${modelPath}` : modelPath);
     // const exists = await RNFS.exists(modelPath);
     const exists = false;
     if (!exists) {
@@ -31,7 +32,9 @@ export default function App() {
       }).promise;
     }
 
-    setLocalModelPath(modelPath);
+    setLocalModelPath(
+      Platform.OS === 'android' ? `file://${modelPath}` : modelPath,
+    );
   };
 
   React.useEffect(() => {
@@ -70,8 +73,6 @@ export default function App() {
           allowRotate
           allowScale
           allowTranslate
-          planeOrientation="both"
-          lightEstimation
           onStarted={() => console.log('started')}
           onEnded={() => console.log('ended')}
           onModelPlaced={() => console.log('model displayed')}

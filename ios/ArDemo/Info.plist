@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSCameraUsageDescription</key>
 	<string>The camera is needed for AR functionality</string>
 	<key>UILaunchStoryboardName</key>
@@ -53,5 +53,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>CircularStd-Black.ttf</string>
+		<string>CircularStd-Bold.ttf</string>
+		<string>CircularStd-Medium.ttf</string>
+	</array>
 </dict>
 </plist>

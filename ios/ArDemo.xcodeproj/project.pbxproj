@@ -12,8 +12,12 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		41DFFD9C28EC2FDD001A6F6F /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DFFD9B28EC2FDD001A6F6F /* Empty.swift */; };
 		7699B88040F8A987B510C191 /* libPods-ArDemo-ArDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ArDemo-ArDemoTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		51530704F0EC49D6A6167678 /* CircularStd-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF392B09918B4056AF5E7E56 /* CircularStd-Black.ttf */; };
+		24A6009623334F09B6BA741D /* CircularStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 428C738875D64000B08BA14D /* CircularStd-Bold.ttf */; };
+		ACACB9151E514D3CB808BDF3 /* CircularStd-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E0F8782DAB445DAB2CF5261 /* CircularStd-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,12 +42,16 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ArDemo/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-ArDemo-ArDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ArDemo-ArDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-ArDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArDemo.debug.xcconfig"; path = "Target Support Files/Pods-ArDemo/Pods-ArDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		41DFFD9B28EC2FDD001A6F6F /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-ArDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArDemo.release.xcconfig"; path = "Target Support Files/Pods-ArDemo/Pods-ArDemo.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-ArDemo-ArDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArDemo-ArDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-ArDemo-ArDemoTests/Pods-ArDemo-ArDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-ArDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ArDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ArDemo/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-ArDemo-ArDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArDemo-ArDemoTests.release.xcconfig"; path = "Target Support Files/Pods-ArDemo-ArDemoTests/Pods-ArDemo-ArDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		BF392B09918B4056AF5E7E56 /* CircularStd-Black.ttf */ = {isa = PBXFileReference; name = "CircularStd-Black.ttf"; path = "../assets/CircularStd-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		428C738875D64000B08BA14D /* CircularStd-Bold.ttf */ = {isa = PBXFileReference; name = "CircularStd-Bold.ttf"; path = "../assets/CircularStd-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9E0F8782DAB445DAB2CF5261 /* CircularStd-Medium.ttf */ = {isa = PBXFileReference; name = "CircularStd-Medium.ttf"; path = "../assets/CircularStd-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +100,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				41DFFD9B28EC2FDD001A6F6F /* Empty.swift */,
 			);
 			name = ArDemo;
 			sourceTree = "<group>";
@@ -122,6 +131,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				2F10518CA486424EBC39982A /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -147,6 +157,17 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		2F10518CA486424EBC39982A /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				BF392B09918B4056AF5E7E56 /* CircularStd-Black.ttf */,
+				428C738875D64000B08BA14D /* CircularStd-Bold.ttf */,
+				9E0F8782DAB445DAB2CF5261 /* CircularStd-Medium.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -207,7 +228,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -244,6 +265,9 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				51530704F0EC49D6A6167678 /* CircularStd-Black.ttf in Resources */,
+				24A6009623334F09B6BA741D /* CircularStd-Bold.ttf in Resources */,
+				ACACB9151E514D3CB808BDF3 /* CircularStd-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +438,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				41DFFD9C28EC2FDD001A6F6F /* Empty.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +457,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-ArDemo-ArDemoTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -459,6 +485,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-ArDemo-ArDemoTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = ArDemoTests/Info.plist;
@@ -502,8 +529,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sofitces.ScontactZ;
 				PRODUCT_NAME = ArDemo;
 				PROVISIONING_PROFILE_SPECIFIER = ScontactZDev;
+				SWIFT_OBJC_BRIDGING_HEADER = "ArDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -530,7 +558,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sofitces.ScontactZ;
 				PRODUCT_NAME = ArDemo;
 				PROVISIONING_PROFILE_SPECIFIER = ScontactZDev;
-				SWIFT_VERSION = 5.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "ArDemo-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

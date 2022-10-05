@@ -17,6 +17,6 @@ module.exports = {
     }),
   },
   resolver: {
-    assetExts: [...defaultAssetExts, 'glb', 'usdz'],
+    assetExts: [...defaultAssetExts, 'glb', 'usdz', 'obj'],
   },
 };
