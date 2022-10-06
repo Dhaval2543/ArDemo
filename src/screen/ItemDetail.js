@@ -13,7 +13,6 @@ import {
 import {ModelView} from 'react-native-3d-model-view';
 import Back from '../assests/back.png';
 import Chair from '../assests/chair.png';
-import Check from '../assests/check.png';
 import MirrorChair from '../assests/mirrorChair.png';
 import Star from '../assests/star.png';
 import StarFilled from '../assests/starFilled.png';
@@ -160,7 +159,7 @@ export function ItemDetail({navigation}) {
                     />
                   </Pressable>
                 ))}
-                <Pressable
+                {/* <Pressable
                   style={[
                     styles.imageContainer,
                     {
@@ -176,12 +175,12 @@ export function ItemDetail({navigation}) {
                     setActive(6);
                   }}>
                   <Text>3D</Text>
-                </Pressable>
+                </Pressable> */}
               </View>
             </ScrollView>
           </View>
           <ItemDetailView />
-          <View style={styles.colorMainContainer}>
+          {/* <View style={styles.colorMainContainer}>
             <Pressable
               style={[
                 styles.colorBorderContainer,
@@ -256,7 +255,7 @@ export function ItemDetail({navigation}) {
                 )}
               </View>
             </Pressable>
-          </View>
+          </View> */}
           <View style={styles.btnMainContainer}>
             <Pressable
               style={styles.btnContainer}
