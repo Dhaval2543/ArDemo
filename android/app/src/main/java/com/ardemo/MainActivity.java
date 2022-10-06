@@ -1,4 +1,4 @@
-package com.ardemo;
+package com.softices.ar.reactnative.android;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

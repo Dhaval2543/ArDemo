@@ -73,6 +73,14 @@ export function ItemArView({navigation}) {
           ref={ref}
         />
       )}
+      {/* <ARModelView
+        source={{
+          model:
+            'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car.obj?raw=true',
+          texture:
+            'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car_main_Base_Color.png?raw=true',
+        }}
+      /> */}
       {localModelPath == '' && (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size={'large'} color={colors.white} />

@@ -1,4 +1,4 @@
-package com.ardemo; // Change this to your package name.
+package com.softices.ar.reactnative.android; // Change this to your package name.
 
 import android.content.Intent;
 import android.os.Bundle;

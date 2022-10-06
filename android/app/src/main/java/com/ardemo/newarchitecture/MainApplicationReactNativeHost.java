@@ -1,4 +1,4 @@
-package com.ardemo.newarchitecture;
+package com.softices.ar.reactnative.android.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.ardemo.BuildConfig;
-import com.ardemo.newarchitecture.components.MainComponentsRegistry;
-import com.ardemo.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.softices.ar.reactnative.android.BuildConfig;
+import com.softices.ar.reactnative.android.newarchitecture.components.MainComponentsRegistry;
+import com.softices.ar.reactnative.android.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
+  ActivityIndicator,
   Image,
+  Platform,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -23,6 +25,7 @@ const imageGal = [1, 2, 3, 4, 5, 6];
 export function ItemDetail({navigation}) {
   const [active, setActive] = useState(0);
   const [color, setColor] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const ItemDetailView = () => {
     return (
@@ -60,6 +63,10 @@ export function ItemDetail({navigation}) {
     );
   };
 
+  useEffect(() => {
+    setLoading(false);
+  }, [loading]);
+
   return (
     <View style={styles.container}>
       <View style={styles.positionBackView} />
@@ -77,32 +84,54 @@ export function ItemDetail({navigation}) {
             {active == 6 ? (
               <View style={styles.mainImgStyle}>
                 {/* <RuntimeAssets /> */}
-                <ModelView
-                  // source={{
-                  //   model: require('../../res/Hamburger.obj'),
-                  //   texture: require('../../res/Hamburger.png'),
-                  // }}
-                  // source={{
-                  //   model: require('../../res/object_car.obj'),
-                  //   texture:
-                  //     color === 'grey'
-                  //       ? require('../../res/object_car_main_Base_Color_grey.png')
-                  //       : color === 'red'
-                  //       ? require('../../res/object_car_main_Base_Color_red.png')
-                  //       : color === 'blue'
-                  //       ? require('../../res/object_car_main_Base_Color_blue.png')
-                  //       : color === 'yellow'
-                  //       ? require('../../res/object_car_main_Base_Color_yellow.png')
-                  //       : require('../../res/object_car_main_Base_Color.png'),
-                  // }}
-                  source={{
-                    zip: require('../../res/chair.zip'),
-                  }}
-                  style={styles.mainImgStyle}
-                  // onLoadModelStart={this.onLoadModelStart}
-                  // onLoadModelSuccess={this.onLoadModelSuccess}
-                  // onLoadModelError={this.onLoadModelError}
-                />
+                {!loading ? (
+                  <ModelView
+                    source={{
+                      model:
+                        'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car.obj?raw=true',
+                      texture:
+                        color === 'grey'
+                          ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car_main_Base_Color_grey.png?raw=true'
+                          : color === 'red'
+                          ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car_main_Base_Color_red.png?raw=true'
+                          : color === 'blue'
+                          ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car_main_Base_Color_blue.png?raw=true'
+                          : color === 'yellow'
+                          ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car_main_Base_Color_yellow.png?raw=true'
+                          : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car_main_Base_Color.png?raw=true',
+                    }}
+                    style={styles.multiDimentionContainer}
+                    scale={Platform.OS === 'android' ? 2.5 : 1}
+                    // source={{
+                    //   model: require('../../res/Chair_without_texture.obj'),
+                    //   texture: require('../../res/leather_white_rough_3.png'),
+                    // }}
+                    // source={{
+                    //   model: require('../../res/object_car.obj'),
+                    //   texture:
+                    //     color === 'grey'
+                    //       ? require('../../res/object_car_main_Base_Color_grey.png')
+                    //       : color === 'red'
+                    //       ? require('../../res/object_car_main_Base_Color_red.png')
+                    //       : color === 'blue'
+                    //       ? require('../../res/object_car_main_Base_Color_blue.png')
+                    //       : color === 'yellow'
+                    //       ? require('../../res/object_car_main_Base_Color_yellow.png')
+                    //       : require('../../res/object_car_main_Base_Color.png'),
+                    // }}
+                  />
+                ) : (
+                  <View
+                    style={[
+                      styles.multiDimentionContainer,
+                      {
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      },
+                    ]}>
+                    <ActivityIndicator size={'large'} color={colors.blackOp5} />
+                  </View>
+                )}
               </View>
             ) : (
               <Image
@@ -146,7 +175,7 @@ export function ItemDetail({navigation}) {
                   onPress={() => {
                     setActive(6);
                   }}>
-                  <Text>360°</Text>
+                  <Text>3D</Text>
                 </Pressable>
               </View>
             </ScrollView>
@@ -160,6 +189,9 @@ export function ItemDetail({navigation}) {
               ]}
               onPress={() => {
                 setColor('grey');
+                if (Platform.OS === 'android') {
+                  setLoading(true);
+                }
               }}>
               <View
                 style={[styles.colorBtnContainer, {backgroundColor: 'grey'}]}>
@@ -175,6 +207,9 @@ export function ItemDetail({navigation}) {
               ]}
               onPress={() => {
                 setColor('red');
+                if (Platform.OS === 'android') {
+                  setLoading(true);
+                }
               }}>
               <View
                 style={[styles.colorBtnContainer, {backgroundColor: 'red'}]}>
@@ -190,6 +225,9 @@ export function ItemDetail({navigation}) {
               ]}
               onPress={() => {
                 setColor('blue');
+                if (Platform.OS === 'android') {
+                  setLoading(true);
+                }
               }}>
               <View
                 style={[styles.colorBtnContainer, {backgroundColor: 'blue'}]}>
@@ -207,6 +245,9 @@ export function ItemDetail({navigation}) {
               ]}
               onPress={() => {
                 setColor('yellow');
+                if (Platform.OS === 'android') {
+                  setLoading(true);
+                }
               }}>
               <View
                 style={[styles.colorBtnContainer, {backgroundColor: 'yellow'}]}>
@@ -286,7 +327,7 @@ const styles = StyleSheet.create({
     color: colors.black,
   },
   itemPriceText: {
-    color: colors.red,
+    color: colors.blue,
   },
   ratingViewContainer: {
     flexDirection: 'row',
@@ -323,14 +364,14 @@ const styles = StyleSheet.create({
     width: (width * 65) / 100,
     paddingVertical: vs(15),
     borderWidth: 2,
-    borderColor: colors.red,
+    borderColor: colors.blue,
     borderRadius: ms(8),
     alignItems: 'center',
   },
   btnText: {
     fontFamily: 'CircularStd-Medium',
     fontSize: ms(16),
-    color: colors.red,
+    color: colors.blue,
   },
   colorMainContainer: {
     flexDirection: 'row',
@@ -355,5 +396,9 @@ const styles = StyleSheet.create({
     width: ms(32),
     height: ms(32),
     resizeMode: 'contain',
+  },
+  multiDimentionContainer: {
+    width: width - hs(36),
+    height: (width * 65) / 100,
   },
 });

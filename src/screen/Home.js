@@ -11,6 +11,7 @@ import {
 import Billboard from '../assests/billBoard.png';
 import Chair from '../assests/chair.png';
 import Sofa from '../assests/sofa.png';
+import {colors} from '../utils/colors';
 import {hs, ms, vs, width} from '../utils/measures';
 
 const Header = () => {
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
     fontSize: ms(16),
     fontWeight: '700',
     fontFamily: 'CircularStd-Bold',
-    color: '#EB1D36',
+    color: colors.blue,
   },
   tabItemActualPriceText: {
     fontSize: ms(13),

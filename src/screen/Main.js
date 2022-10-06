@@ -6,6 +6,7 @@ import {
   ScrollView,
   StyleSheet,
 } from 'react-native';
+import Cloth from '../assests/cloth.png';
 import Furniture from '../assests/furniture.png';
 import WallFrame from '../assests/wallFrame.png';
 import Watch from '../assests/watch.png';
@@ -31,7 +32,7 @@ export function Main({navigation}) {
         </Pressable>
 
         <Pressable>
-          <Image source={WallFrame} style={styles.posterImg} />
+          <Image source={Cloth} style={styles.posterImg} />
         </Pressable>
       </ScrollView>
     </SafeAreaView>
