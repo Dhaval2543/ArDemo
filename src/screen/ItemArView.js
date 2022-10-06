@@ -22,7 +22,7 @@ export function ItemArView({navigation}) {
   const loadPath = async () => {
     const modelSrc =
       Platform.OS === 'android'
-        ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/chair_3d_model.glb?raw=true'
+        ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/chair3Dmodel.glb?raw=true'
         : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/chair3Dmodel.usdz?raw=true';
     const modelPath = `${RNFS.DocumentDirectoryPath}/model.${
       Platform.OS === 'android' ? 'glb' : 'usdz'
