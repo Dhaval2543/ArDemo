@@ -6,7 +6,7 @@
 
     <item
         android:width="180dp"
-        android:height="180dp"
+        android:height="69dp"
         android:drawable="@mipmap/splashicon"
         android:gravity="center" />
 

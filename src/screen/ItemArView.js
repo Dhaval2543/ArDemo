@@ -22,8 +22,8 @@ export function ItemArView({navigation}) {
   const loadPath = async () => {
     const modelSrc =
       Platform.OS === 'android'
-        ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/Astronaut.glb?raw=true'
-        : 'https://modelviewer.dev/shared-assets/models/Astronaut.usdz?raw=true';
+        ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/chair_3d_model.glb?raw=true'
+        : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/chair_3d_model.usdz?raw=true';
     const modelPath = `${RNFS.DocumentDirectoryPath}/model.${
       Platform.OS === 'android' ? 'glb' : 'usdz'
     }`;
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   arView: {
-    flex: 2,
+    flex: 1,
   },
   headerMainContainer: {
     position: 'absolute',
