@@ -14,19 +14,25 @@ import Back from '../assests/back.png';
 import {colors} from '../utils/colors';
 import {hs, ms, vs, width} from '../utils/measures';
 
-export function ItemArView({navigation}) {
+export function ItemArView({navigation, route}) {
   const [localModelPath, setLocalModelPath] = useState('');
   const [showArView, setShowArView] = useState(true);
   const ref = useRef();
-
+  console.log(route.params);
+  const {params} = route;
   const loadPath = async () => {
-    const modelSrc =
-      Platform.OS === 'android'
-        ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/chair3Dmodel.glb?raw=true'
-        : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/chair3Dmodel.usdz?raw=true';
-    const modelPath = `${RNFS.DocumentDirectoryPath}/model.${
-      Platform.OS === 'android' ? 'glb' : 'usdz'
-    }`;
+    const iosUrl =
+      params.item == 0
+        ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/Office_Chair.usdz?raw=true'
+        : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/Leather_couch.usdz?raw=true';
+    const androidUrl =
+      params.item == 0
+        ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/office_chair.glb?raw=true'
+        : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/leather_couch.glb?raw=true';
+    const modelSrc = Platform.OS === 'android' ? androidUrl : iosUrl;
+    const modelPath = `${RNFS.DocumentDirectoryPath}/${
+      params.item == 0 ? 'Office_Chair' : 'Leather_couch'
+    }.${Platform.OS === 'android' ? 'glb' : 'usdz'}`;
     const exists = await RNFS.exists(modelPath);
     // if (!exists) {
     await RNFS.downloadFile({

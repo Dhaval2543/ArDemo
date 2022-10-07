@@ -9,8 +9,8 @@ import {
   View,
 } from 'react-native';
 import Billboard from '../assests/billBoard.png';
-import Chair from '../assests/chair.png';
-import Sofa from '../assests/sofa.png';
+import Chair from '../assests/chair1.png';
+import Sofa from '../assests/leather_couch_1.png';
 import {colors} from '../utils/colors';
 import {hs, ms, vs, width} from '../utils/measures';
 
@@ -35,12 +35,12 @@ export function Home({navigation}) {
     <SafeAreaView style={styles.container}>
       <Header />
       <ScrollView style={styles.container} bounces={false}>
-        <BillboardView />
+        {/* <BillboardView /> */}
         <View style={styles.itemListContainer}>
           <Pressable
             style={styles.itemTabContainer}
             onPress={() => {
-              navigation.push('ItemDetail');
+              navigation.push('ItemDetail', {item: 0});
             }}>
             <Image source={Chair} style={styles.tabImage} />
             <Text style={styles.tabItemNameText}>Office Scotch</Text>
@@ -55,37 +55,7 @@ export function Home({navigation}) {
           <Pressable
             style={styles.itemTabContainer}
             onPress={() => {
-              navigation.push('ItemDetail');
-            }}>
-            <Image source={Sofa} style={styles.tabImage} />
-            <Text style={styles.tabItemNameText}>Office Scotch</Text>
-            <Text style={styles.tabItemDescriText}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit
-            </Text>
-            <View style={styles.tabItemPriceContainer}>
-              <Text style={styles.tabItemSellPriceText}>$860.00</Text>
-              <Text style={styles.tabItemActualPriceText}>$870.00</Text>
-            </View>
-          </Pressable>
-          <Pressable
-            style={styles.itemTabContainer}
-            onPress={() => {
-              navigation.push('ItemDetail');
-            }}>
-            <Image source={Chair} style={styles.tabImage} />
-            <Text style={styles.tabItemNameText}>Office Scotch</Text>
-            <Text style={styles.tabItemDescriText}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit
-            </Text>
-            <View style={styles.tabItemPriceContainer}>
-              <Text style={styles.tabItemSellPriceText}>$860.00</Text>
-              <Text style={styles.tabItemActualPriceText}>$870.00</Text>
-            </View>
-          </Pressable>
-          <Pressable
-            style={styles.itemTabContainer}
-            onPress={() => {
-              navigation.push('ItemDetail');
+              navigation.push('ItemDetail', {item: 1});
             }}>
             <Image source={Sofa} style={styles.tabImage} />
             <Text style={styles.tabItemNameText}>Office Scotch</Text>

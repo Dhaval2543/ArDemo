@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   Image,
+  NativeModules,
   Platform,
   Pressable,
   SafeAreaView,
@@ -11,17 +12,23 @@ import {
   View,
 } from 'react-native';
 import {ModelView} from 'react-native-3d-model-view';
+import FileViewer from 'react-native-file-viewer';
+import RNFS from 'react-native-fs';
 import Back from '../assests/back.png';
-import Chair from '../assests/chair.png';
-import MirrorChair from '../assests/mirrorChair.png';
+import Chair1 from '../assests/chair1.png';
+import Chair2 from '../assests/chair2.png';
+import Chair3 from '../assests/chair3.png';
+import Chair4 from '../assests/chair4.png';
+import Sofa1 from '../assests/leather_couch_1.png';
+import Sofa2 from '../assests/leather_couch_2.png';
+import Sofa3 from '../assests/leather_couch_3.png';
+import Sofa4 from '../assests/leather_couch_4.png';
 import Star from '../assests/star.png';
 import StarFilled from '../assests/starFilled.png';
 import {colors} from '../utils/colors';
 import {height, hs, ms, vs, width} from '../utils/measures';
 
-const imageGal = [1, 2, 3, 4, 5, 6];
-
-export function ItemDetail({navigation}) {
+export function ItemDetail({navigation, route}) {
   const [active, setActive] = useState(0);
   const [color, setColor] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -66,6 +73,37 @@ export function ItemDetail({navigation}) {
     setLoading(false);
   }, [loading]);
 
+  const loadPath = async item => {
+    console.log('omx');
+    const iosUrl =
+      item == 0
+        ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/Office_Chair.usdz?raw=true'
+        : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/Leather_couch.usdz?raw=true';
+    const androidUrl =
+      item == 0
+        ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/office_chair.glb?raw=true'
+        : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/leather_couch.glb?raw=true';
+    const modelSrc = Platform.OS === 'android' ? androidUrl : iosUrl;
+    const modelPath = `${RNFS.DocumentDirectoryPath}/${
+      item == 0 ? 'Office_Chair' : 'Leather_couch'
+    }.${Platform.OS === 'android' ? 'glb' : 'usdz'}`;
+    const exists = await RNFS.exists(modelPath);
+    // if (!exists) {
+    RNFS.downloadFile({
+      fromUrl: modelSrc,
+      toFile: modelPath,
+    })
+      .promise.then(() => {
+        FileViewer.open(modelPath).catch(err => console.log('error: ', err));
+      })
+      .catch(err => console.log('error: ', err));
+    // }
+  };
+  const {params} = route;
+  const imageGal =
+    params.item == 0
+      ? [Chair1, Chair2, Chair3, Chair4]
+      : [Sofa1, Sofa2, Sofa3, Sofa4];
   return (
     <View style={styles.container}>
       <View style={styles.positionBackView} />
@@ -85,25 +123,33 @@ export function ItemDetail({navigation}) {
                 {/* <RuntimeAssets /> */}
                 {!loading ? (
                   <ModelView
-                    source={{
-                      model:
-                        'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car.obj?raw=true',
-                      texture:
-                        color === 'grey'
-                          ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car_main_Base_Color_grey.png?raw=true'
-                          : color === 'red'
-                          ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car_main_Base_Color_red.png?raw=true'
-                          : color === 'blue'
-                          ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car_main_Base_Color_blue.png?raw=true'
-                          : color === 'yellow'
-                          ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car_main_Base_Color_yellow.png?raw=true'
-                          : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car_main_Base_Color.png?raw=true',
-                    }}
+                    // source={{
+                    //   model:
+                    //     'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car.obj?raw=true',
+                    //   texture:
+                    //     color === 'grey'
+                    //       ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car_main_Base_Color_grey.png?raw=true'
+                    //       : color === 'red'
+                    //       ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car_main_Base_Color_red.png?raw=true'
+                    //       : color === 'blue'
+                    //       ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car_main_Base_Color_blue.png?raw=true'
+                    //       : color === 'yellow'
+                    //       ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car_main_Base_Color_yellow.png?raw=true'
+                    //       : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/object_car_main_Base_Color.png?raw=true',
+                    // }}
                     style={styles.multiDimentionContainer}
                     scale={Platform.OS === 'android' ? 2.5 : 1}
+                    source={{
+                      model: require('../../res/Gramophone_texture.obj'),
+                      texture: require('../../res/gramophone_color_2.png'),
+                    }}
                     // source={{
-                    //   model: require('../../res/Chair_without_texture.obj'),
-                    //   texture: require('../../res/leather_white_rough_3.png'),
+                    //   model: require('../../res/converse_obj.obj'),
+                    //   texture: require('../../res/converse.jpg'),
+                    // }}
+                    // source={{
+                    //   model: require('../../res/converse_obj.obj'),
+                    //   texture: require('../../res/converse.jpg'),
                     // }}
                     // source={{
                     //   model: require('../../res/object_car.obj'),
@@ -132,9 +178,30 @@ export function ItemDetail({navigation}) {
                   </View>
                 )}
               </View>
+            ) : params.item == 0 ? (
+              <Image
+                source={
+                  active == 0
+                    ? Chair1
+                    : active == 1
+                    ? Chair2
+                    : active == 2
+                    ? Chair3
+                    : Chair4
+                }
+                style={styles.mainImgStyle}
+              />
             ) : (
               <Image
-                source={active % 2 == 0 ? Chair : MirrorChair}
+                source={
+                  active == 0
+                    ? Sofa1
+                    : active == 1
+                    ? Sofa2
+                    : active == 2
+                    ? Sofa3
+                    : Sofa4
+                }
                 style={styles.mainImgStyle}
               />
             )}
@@ -153,13 +220,36 @@ export function ItemDetail({navigation}) {
                     onPress={() => {
                       setActive(i);
                     }}>
-                    <Image
-                      source={i % 2 == 0 ? Chair : MirrorChair}
-                      style={styles.imgStyle}
-                    />
+                    {params.item == 0 ? (
+                      <Image
+                        source={
+                          i == 0
+                            ? Chair1
+                            : i == 1
+                            ? Chair2
+                            : i == 2
+                            ? Chair3
+                            : Chair4
+                        }
+                        style={styles.imgStyle}
+                      />
+                    ) : (
+                      <Image
+                        source={
+                          i == 0
+                            ? Sofa1
+                            : i == 1
+                            ? Sofa2
+                            : i == 2
+                            ? Sofa3
+                            : Sofa4
+                        }
+                        style={styles.imgStyle}
+                      />
+                    )}
                   </Pressable>
                 ))}
-                {/* <Pressable
+                <Pressable
                   style={[
                     styles.imageContainer,
                     {
@@ -175,7 +265,7 @@ export function ItemDetail({navigation}) {
                     setActive(6);
                   }}>
                   <Text>3D</Text>
-                </Pressable> */}
+                </Pressable>
               </View>
             </ScrollView>
           </View>
@@ -260,7 +350,18 @@ export function ItemDetail({navigation}) {
             <Pressable
               style={styles.btnContainer}
               onPress={() => {
-                navigation.push('ItemArView');
+                // navigation.push('ItemArView', {item: params.item});
+                if (Platform.OS === 'ios') {
+                  loadPath(params.item);
+                } else {
+                  // navigation.push('ItemArView', {item: params.item});
+                  const {ArViewerModule} = NativeModules;
+                  const modelUrl =
+                    params.item == 1
+                      ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/leather_couch.glb?raw=true'
+                      : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/office_chair.glb?raw=true';
+                  ArViewerModule.openViewer(modelUrl, 'AR Viewer');
+                }
               }}>
               <Text style={styles.btnText}>View in AR</Text>
             </Pressable>
