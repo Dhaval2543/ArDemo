@@ -43,10 +43,13 @@ export function Home({navigation}) {
               navigation.push('ItemDetail', {item: 0});
             }}>
             <Image source={Chair} style={styles.tabImage} />
-            <Text style={styles.tabItemNameText}>Office Scotch</Text>
-            <Text style={styles.tabItemDescriText}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit
-            </Text>
+            <View style={styles.contentContainer}>
+              <Text style={styles.tabItemNameText}>Office Scotch</Text>
+              <Text style={styles.tabItemDescriText}>
+                The product has a breathable mesh which allows air to circulate
+                and and keep you cool.
+              </Text>
+            </View>
             <View style={styles.tabItemPriceContainer}>
               <Text style={styles.tabItemSellPriceText}>$860.00</Text>
               <Text style={styles.tabItemActualPriceText}>$870.00</Text>
@@ -58,10 +61,13 @@ export function Home({navigation}) {
               navigation.push('ItemDetail', {item: 1});
             }}>
             <Image source={Sofa} style={styles.tabImage} />
-            <Text style={styles.tabItemNameText}>Office Scotch</Text>
-            <Text style={styles.tabItemDescriText}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit
-            </Text>
+            <View style={styles.contentContainer}>
+              <Text style={styles.tabItemNameText}>Office Scotch</Text>
+              <Text style={styles.tabItemDescriText}>
+                This sofas are made to be comfortable as possible and come with
+                a brooder arms with removable cousins
+              </Text>
+            </View>
             <View style={styles.tabItemPriceContainer}>
               <Text style={styles.tabItemSellPriceText}>$860.00</Text>
               <Text style={styles.tabItemActualPriceText}>$870.00</Text>
@@ -98,21 +104,24 @@ const styles = StyleSheet.create({
   itemListContainer: {
     paddingHorizontal: hs(18),
     paddingVertical: vs(18),
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
   },
   itemTabContainer: {
     borderWidth: 1,
     borderRadius: 5,
-    width: ((width - hs(36)) * 47.5) / 100,
+    width: width - hs(36),
     padding: ms(15),
     marginVertical: vs(8),
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   tabImage: {
-    width: ((width - hs(36)) * 47.5) / 100 - ms(30),
-    height: ((width - hs(36)) * 47.5) / 100 - ms(30),
+    width: ms(60),
+    height: ms(60),
     resizeMode: 'contain',
+  },
+  contentContainer: {
+    marginLeft: ms(10),
+    width: (width * 45) / 100,
   },
   tabItemNameText: {
     fontSize: ms(14),
@@ -125,9 +134,10 @@ const styles = StyleSheet.create({
     marginTop: vs(8),
   },
   tabItemPriceContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     marginTop: vs(8),
+    width: (width * 19) / 100,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
   },
   tabItemSellPriceText: {
     fontSize: ms(16),
@@ -139,6 +149,5 @@ const styles = StyleSheet.create({
     fontSize: ms(13),
     fontFamily: 'CircularStd-Medium',
     color: 'rgba(0,0,0,0.5)',
-    alignSelf: 'flex-end',
   },
 });

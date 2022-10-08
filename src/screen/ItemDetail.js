@@ -33,7 +33,7 @@ export function ItemDetail({navigation, route}) {
   const [color, setColor] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const ItemDetailView = () => {
+  const ItemDetailView = ({item}) => {
     return (
       <View style={styles.itemDetailMainContainer}>
         <View style={styles.itemRowContainer}>
@@ -61,8 +61,9 @@ export function ItemDetail({navigation, route}) {
         <View>
           <Text style={styles.descripHeadText}>Description</Text>
           <Text style={styles.descriptionText}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            {item === 0
+              ? 'The product has a breathable mesh which allows air to circulate and and keep you cool . the 2D adjustable armrest ,Spacious seat made of high quality super thick foam and the spine shaped backrest provide unmatched comfort and support to important body joints'
+              : 'This sofas are made to be comfortable as possible and come with a brooder arms with removable cousins that you can rearrange as par your preferences and she a with wood thickness to ensure high comfort. Sofa frame are made with highly durable solid wood.'}
           </Text>
         </View>
       </View>
@@ -249,7 +250,7 @@ export function ItemDetail({navigation, route}) {
                     )}
                   </Pressable>
                 ))}
-                <Pressable
+                {/* <Pressable
                   style={[
                     styles.imageContainer,
                     {
@@ -265,11 +266,11 @@ export function ItemDetail({navigation, route}) {
                     setActive(6);
                   }}>
                   <Text>3D</Text>
-                </Pressable>
+                </Pressable> */}
               </View>
             </ScrollView>
           </View>
-          <ItemDetailView />
+          <ItemDetailView item={params.item} />
           {/* <View style={styles.colorMainContainer}>
             <Pressable
               style={[
