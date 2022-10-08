@@ -44,7 +44,7 @@ export function Home({navigation}) {
             }}>
             <Image source={Chair} style={styles.tabImage} />
             <View style={styles.contentContainer}>
-              <Text style={styles.tabItemNameText}>Office Scotch</Text>
+              <Text style={styles.tabItemNameText}>Wooden sofa</Text>
               <Text style={styles.tabItemDescriText}>
                 The product has a breathable mesh which allows air to circulate
                 and and keep you cool.
@@ -62,7 +62,7 @@ export function Home({navigation}) {
             }}>
             <Image source={Sofa} style={styles.tabImage} />
             <View style={styles.contentContainer}>
-              <Text style={styles.tabItemNameText}>Office Scotch</Text>
+              <Text style={styles.tabItemNameText}>Wooden sofa</Text>
               <Text style={styles.tabItemDescriText}>
                 This sofas are made to be comfortable as possible and come with
                 a brooder arms with removable cousins

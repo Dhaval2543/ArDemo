@@ -37,7 +37,7 @@ export function ItemDetail({navigation, route}) {
     return (
       <View style={styles.itemDetailMainContainer}>
         <View style={styles.itemRowContainer}>
-          <Text style={styles.itemNameText}>Office Scotch</Text>
+          <Text style={styles.itemNameText}>Wooden sofa</Text>
           <Text style={[styles.itemNameText, styles.itemPriceText]}>
             $750.00
           </Text>
