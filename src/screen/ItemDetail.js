@@ -360,7 +360,7 @@ export function ItemDetail({navigation, route}) {
                   const modelUrl =
                     params.item == 1
                       ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/leather_couch.glb?raw=true'
-                      : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/Arm_chair_Furniture.glb?raw=true';
+                      : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/furniture_for_real-time_visualization_engine.glb?raw=true';
                   ArViewerModule.openViewer(modelUrl, 'AR Viewer');
                 }
               }}>
