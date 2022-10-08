@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   ActivityIndicator,
   Image,
@@ -70,20 +70,20 @@ export function ItemDetail({navigation, route}) {
     );
   };
 
-  useEffect(() => {
-    setLoading(false);
-  }, [loading]);
+  // useEffect(() => {
+  //   setLoading(false);
+  // }, [loading]);
 
   const loadPath = async item => {
-    console.log('omx');
+    setLoading(true);
     const iosUrl =
       item == 0
-        ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/Office_Chair.usdz?raw=true'
-        : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/Leather_couch.usdz?raw=true';
+        ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/furniture_for_real-time_visualization_engine.usdz?raw=true'
+        : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/Leather_Sofacouch.usdz?raw=true';
     const androidUrl =
       item == 0
-        ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/office_chair.glb?raw=true'
-        : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/leather_couch.glb?raw=true';
+        ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/furniture_for_real-time_visualization_engine.glb?raw=true'
+        : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/leather_sofacouch.glb?raw=true';
     const modelSrc = Platform.OS === 'android' ? androidUrl : iosUrl;
     const modelPath = `${RNFS.DocumentDirectoryPath}/${
       item == 0 ? 'Office_Chair' : 'Leather_couch'
@@ -95,9 +95,14 @@ export function ItemDetail({navigation, route}) {
       toFile: modelPath,
     })
       .promise.then(() => {
-        FileViewer.open(modelPath).catch(err => console.log('error: ', err));
+        setLoading(false);
+        FileViewer.open(modelPath).catch(err => {
+          setLoading(false);
+        });
       })
-      .catch(err => console.log('error: ', err));
+      .catch(err => {
+        setLoading(false);
+      });
     // }
   };
   const {params} = route;
@@ -359,12 +364,17 @@ export function ItemDetail({navigation, route}) {
                   const {ArViewerModule} = NativeModules;
                   const modelUrl =
                     params.item == 1
-                      ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/leather_couch.glb?raw=true'
+                      ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/leather_sofacouch.glb?raw=true'
                       : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/furniture_for_real-time_visualization_engine.glb?raw=true';
                   ArViewerModule.openViewer(modelUrl, 'AR Viewer');
                 }
-              }}>
-              <Text style={styles.btnText}>View in AR</Text>
+              }}
+              disabled={loading}>
+              {loading ? (
+                <ActivityIndicator size={'small'} color={colors.blue} />
+              ) : (
+                <Text style={styles.btnText}>View in AR</Text>
+              )}
             </Pressable>
           </View>
         </ScrollView>
