@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   Image,
@@ -23,48 +23,29 @@ import Sofa1 from '../assests/leather_couch_1.png';
 import Sofa2 from '../assests/leather_couch_2.png';
 import Sofa3 from '../assests/leather_couch_3.png';
 import Sofa4 from '../assests/leather_couch_4.png';
-import Star from '../assests/star.png';
-import StarFilled from '../assests/starFilled.png';
 import {colors} from '../utils/colors';
+import {jsonData} from '../utils/constants';
 import {height, hs, ms, vs, width} from '../utils/measures';
 
 export function ItemDetail({navigation, route}) {
   const [active, setActive] = useState(0);
   const [color, setColor] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [product, setProduct] = useState(null);
 
-  const ItemDetailView = ({item}) => {
+  const ItemDetailView = () => {
     return (
       <View style={styles.itemDetailMainContainer}>
         <View style={styles.itemRowContainer}>
-          <Text style={styles.itemNameText}>Wooden sofa</Text>
-          <Text style={[styles.itemNameText, styles.itemPriceText]}>
-            $750.00
-          </Text>
-        </View>
-        <View style={styles.ratingViewContainer}>
-          <Image source={StarFilled} style={styles.starImgStyle} />
-          <Image source={StarFilled} style={styles.starImgStyle} />
-          <Image source={StarFilled} style={styles.starImgStyle} />
-          <Image source={StarFilled} style={styles.starImgStyle} />
-          <Image
-            source={Star}
-            style={[
-              styles.starImgStyle,
-              {
-                tintColor: colors.blackOp5,
-              },
-            ]}
-          />
-          <Text style={styles.ratingTextView}>4.9 {'(50 review)'}</Text>
+          {product != null && (
+            <Text style={styles.itemNameText}>{product.productName}</Text>
+          )}
         </View>
         <View>
           <Text style={styles.descripHeadText}>Description</Text>
-          <Text style={styles.descriptionText}>
-            {item === 0
-              ? 'The product has a breathable mesh which allows air to circulate and and keep you cool . the 2D adjustable armrest ,Spacious seat made of high quality super thick foam and the spine shaped backrest provide unmatched comfort and support to important body joints'
-              : 'This sofas are made to be comfortable as possible and come with a brooder arms with removable cousins that you can rearrange as par your preferences and she a with wood thickness to ensure high comfort. Sofa frame are made with highly durable solid wood.'}
-          </Text>
+          {product != null && (
+            <Text style={styles.descriptionText}>{product.description}</Text>
+          )}
         </View>
       </View>
     );
@@ -74,16 +55,18 @@ export function ItemDetail({navigation, route}) {
   //   setLoading(false);
   // }, [loading]);
 
+  useEffect(() => {
+    const {params} = route;
+    if (params != undefined) {
+      let productData = jsonData[params.item];
+      setProduct(productData);
+    }
+  }, []);
+
   const loadPath = async item => {
     setLoading(true);
-    const iosUrl =
-      item == 0
-        ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/furniture_for_real-time_visualization_engine.usdz?raw=true'
-        : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/Leather_Sofacouch.usdz?raw=true';
-    const androidUrl =
-      item == 0
-        ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/furniture_for_real-time_visualization_engine.glb?raw=true'
-        : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/leather_sofacouch.glb?raw=true';
+    const iosUrl = product.iosObject;
+    const androidUrl = product.androidObject;
     const modelSrc = Platform.OS === 'android' ? androidUrl : iosUrl;
     const modelPath = `${RNFS.DocumentDirectoryPath}/${
       item == 0 ? 'Office_Chair' : 'Leather_couch'
@@ -184,77 +167,33 @@ export function ItemDetail({navigation, route}) {
                   </View>
                 )}
               </View>
-            ) : params.item == 0 ? (
-              <Image
-                source={
-                  active == 0
-                    ? Chair1
-                    : active == 1
-                    ? Chair2
-                    : active == 2
-                    ? Chair3
-                    : Chair4
-                }
-                style={styles.mainImgStyle}
-              />
             ) : (
-              <Image
-                source={
-                  active == 0
-                    ? Sofa1
-                    : active == 1
-                    ? Sofa2
-                    : active == 2
-                    ? Sofa3
-                    : Sofa4
-                }
-                style={styles.mainImgStyle}
-              />
+              product != null && (
+                <Image
+                  source={product.assets[active]}
+                  style={styles.mainImgStyle}
+                />
+              )
             )}
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <View style={styles.imageListContainer}>
-                {imageGal.map((item, i) => (
-                  <Pressable
-                    key={i}
-                    style={[
-                      styles.imageContainer,
-                      {
-                        borderColor:
-                          active == i ? colors.black : colors.blackOp15,
-                      },
-                    ]}
-                    onPress={() => {
-                      setActive(i);
-                    }}>
-                    {params.item == 0 ? (
-                      <Image
-                        source={
-                          i == 0
-                            ? Chair1
-                            : i == 1
-                            ? Chair2
-                            : i == 2
-                            ? Chair3
-                            : Chair4
-                        }
-                        style={styles.imgStyle}
-                      />
-                    ) : (
-                      <Image
-                        source={
-                          i == 0
-                            ? Sofa1
-                            : i == 1
-                            ? Sofa2
-                            : i == 2
-                            ? Sofa3
-                            : Sofa4
-                        }
-                        style={styles.imgStyle}
-                      />
-                    )}
-                  </Pressable>
-                ))}
+                {product != null &&
+                  product.assets.map((item, i) => (
+                    <Pressable
+                      key={i}
+                      style={[
+                        styles.imageContainer,
+                        {
+                          borderColor:
+                            active == i ? colors.black : colors.blackOp15,
+                        },
+                      ]}
+                      onPress={() => {
+                        setActive(i);
+                      }}>
+                      <Image source={item} style={styles.imgStyle} />
+                    </Pressable>
+                  ))}
                 {/* <Pressable
                   style={[
                     styles.imageContainer,
@@ -357,16 +296,15 @@ export function ItemDetail({navigation, route}) {
               style={styles.btnContainer}
               onPress={() => {
                 // navigation.push('ItemArView', {item: params.item});
-                if (Platform.OS === 'ios') {
-                  loadPath(params.item);
-                } else {
-                  // navigation.push('ItemArView', {item: params.item});
-                  const {ArViewerModule} = NativeModules;
-                  const modelUrl =
-                    params.item == 1
-                      ? 'https://github.com/Dhaval2543/ArDemo/blob/main/res/leather_sofacouch.glb?raw=true'
-                      : 'https://github.com/Dhaval2543/ArDemo/blob/main/res/furniture_for_real-time_visualization_engine.glb?raw=true';
-                  ArViewerModule.openViewer(modelUrl, 'AR Viewer');
+                if (product != null) {
+                  if (Platform.OS === 'ios') {
+                    loadPath();
+                  } else {
+                    // navigation.push('ItemArView', {item: params.item});
+                    const {ArViewerModule} = NativeModules;
+                    const modelUrl = product.androidObject;
+                    ArViewerModule.openViewer(modelUrl, 'AR Viewer');
+                  }
                 }
               }}
               disabled={loading}>
@@ -375,6 +313,21 @@ export function ItemDetail({navigation, route}) {
               ) : (
                 <Text style={styles.btnText}>View in AR</Text>
               )}
+            </Pressable>
+            <Pressable
+              style={[styles.btnContainer, {backgroundColor: colors.blue}]}
+              onPress={() => {
+                navigation.push('Contact');
+              }}>
+              <Text
+                style={[
+                  styles.btnText,
+                  {
+                    color: colors.white,
+                  },
+                ]}>
+                Contact us
+              </Text>
             </Pressable>
           </View>
         </ScrollView>
@@ -470,9 +423,12 @@ const styles = StyleSheet.create({
   btnMainContainer: {
     alignItems: 'center',
     marginVertical: ms(25),
+    marginHorizontal: hs(18),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   btnContainer: {
-    width: (width * 65) / 100,
+    width: ((width - hs(36)) * 48.5) / 100,
     paddingVertical: vs(15),
     borderWidth: 2,
     borderColor: colors.blue,

@@ -9,9 +9,8 @@ import {
   View,
 } from 'react-native';
 import Billboard from '../assests/billBoard.png';
-import Chair from '../assests/chair1.png';
-import Sofa from '../assests/leather_couch_1.png';
 import {colors} from '../utils/colors';
+import {jsonData} from '../utils/constants';
 import {hs, ms, vs, width} from '../utils/measures';
 
 const Header = () => {
@@ -37,42 +36,20 @@ export function Home({navigation}) {
       <ScrollView style={styles.container} bounces={false}>
         {/* <BillboardView /> */}
         <View style={styles.itemListContainer}>
-          <Pressable
-            style={styles.itemTabContainer}
-            onPress={() => {
-              navigation.push('ItemDetail', {item: 0});
-            }}>
-            <Image source={Chair} style={styles.tabImage} />
-            <View style={styles.contentContainer}>
-              <Text style={styles.tabItemNameText}>Wooden sofa</Text>
-              <Text style={styles.tabItemDescriText}>
-                The product has a breathable mesh which allows air to circulate
-                and and keep you cool.
-              </Text>
-            </View>
-            <View style={styles.tabItemPriceContainer}>
-              <Text style={styles.tabItemSellPriceText}>$860.00</Text>
-              <Text style={styles.tabItemActualPriceText}>$870.00</Text>
-            </View>
-          </Pressable>
-          <Pressable
-            style={styles.itemTabContainer}
-            onPress={() => {
-              navigation.push('ItemDetail', {item: 1});
-            }}>
-            <Image source={Sofa} style={styles.tabImage} />
-            <View style={styles.contentContainer}>
-              <Text style={styles.tabItemNameText}>Wooden sofa</Text>
-              <Text style={styles.tabItemDescriText}>
-                This sofas are made to be comfortable as possible and come with
-                a brooder arms with removable cousins
-              </Text>
-            </View>
-            <View style={styles.tabItemPriceContainer}>
-              <Text style={styles.tabItemSellPriceText}>$860.00</Text>
-              <Text style={styles.tabItemActualPriceText}>$870.00</Text>
-            </View>
-          </Pressable>
+          {jsonData.map((item, i) => (
+            <Pressable
+              key={i}
+              style={styles.itemTabContainer}
+              onPress={() => {
+                navigation.push('ItemDetail', {item: i});
+              }}>
+              <Image source={item.assets[0]} style={styles.tabImage} />
+              <View style={styles.contentContainer}>
+                <Text style={styles.tabItemNameText}>{item.productName}</Text>
+                <Text style={styles.tabItemDescriText}>{item.shorDes}</Text>
+              </View>
+            </Pressable>
+          ))}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -121,7 +98,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     marginLeft: ms(10),
-    width: (width * 45) / 100,
+    width: (width * 62) / 100,
   },
   tabItemNameText: {
     fontSize: ms(14),

@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useEffect} from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import {Home, ItemDetail} from './screen';
+import {Contact} from './screen/contact';
 import {ItemArView} from './screen/ItemArView';
 import {Main} from './screen/Main';
 
@@ -34,6 +35,11 @@ export function App() {
         <Stack.Screen
           component={ItemArView}
           name={'ItemArView'}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          component={Contact}
+          name={'Contact'}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
