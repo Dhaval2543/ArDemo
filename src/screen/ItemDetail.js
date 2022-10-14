@@ -40,6 +40,11 @@ export function ItemDetail({navigation, route}) {
           {product != null && (
             <Text style={styles.itemNameText}>{product.productName}</Text>
           )}
+          {product != null && (
+            <Text style={[styles.itemNameText, styles.itemPriceText]}>
+              {product.discountedPrice}
+            </Text>
+          )}
         </View>
         <View>
           <Text style={styles.descripHeadText}>Description</Text>

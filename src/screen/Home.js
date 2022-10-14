@@ -48,6 +48,14 @@ export function Home({navigation}) {
                 <Text style={styles.tabItemNameText}>{item.productName}</Text>
                 <Text style={styles.tabItemDescriText}>{item.shorDes}</Text>
               </View>
+              <View style={styles.tabItemPriceContainer}>
+                <Text style={styles.tabItemSellPriceText}>
+                  {item.discountedPrice}
+                </Text>
+                <Text style={styles.tabItemActualPriceText}>
+                  {item.actualPrice}
+                </Text>
+              </View>
             </Pressable>
           ))}
         </View>
@@ -98,7 +106,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     marginLeft: ms(10),
-    width: (width * 62) / 100,
+    width: (width * 45) / 100,
   },
   tabItemNameText: {
     fontSize: ms(14),
